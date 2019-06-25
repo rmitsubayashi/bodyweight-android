@@ -12,13 +12,14 @@ tasks.withType(Test) {
 
 tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
         dependsOn: ["testDebugUnitTest"]) {
-    group = "Reporting"
+    group = "reporting"
     description = "Generate Jacoco coverage reports."
 
+    def reportFolderPath = "$buildDir/jacoco/unit-test-reports"
     reports {
         html {
             enabled true
-            destination file("$buildDir/jacoco/unit-test-reports/coverage")
+            destination file("${reportFolderPath}/coverage")
         }
     }
 
@@ -45,13 +46,13 @@ tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
     // folders in the same file hierarchy.
     // so, we are moving all of them under the 'jacoco' folder and renaming them accordingly.
     doLast {
-        ant.move(toDir: "$project.buildDir/jacoco/unit-test-reports/summary"){
+        ant.move(toDir: "${reportFolderPath}/summary"){
             fileset(dir: "$project.buildDir/reports/tests/testDebugUnitTest")
         }
         delete "$project.buildDir/reports"
     }
     doLast {
-        ant.move(toDir: "$project.buildDir/jacoco/unit-test-reports/individualResults"){
+        ant.move(toDir: "${reportFolderPath}/individualResults"){
             fileset(dir: "$project.buildDir/test-results/testDebugUnitTest")
         }
         delete "$project.buildDir/test-results"
