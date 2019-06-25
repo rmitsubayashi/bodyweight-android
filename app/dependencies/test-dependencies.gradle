@@ -1,4 +1,4 @@
-apply from: 'buildsystem/common-dependency-versions.gradle'
+apply from: 'dependencies/common-dependency-versions.gradle'
 
 ext {
     unitTestDeps = [

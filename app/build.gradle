@@ -4,9 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply from: 'buildsystem/general-dependencies.gradle'
-apply from: 'buildsystem/test-dependencies.gradle'
-apply from: 'buildsystem/dependencies.gradle'
+apply from: 'dependencies/general-dependencies.gradle'
+apply from: 'dependencies/test-dependencies.gradle'
+apply from: 'dependencies/dependencies.gradle'
 
 android {
     compileSdkVersion 28
