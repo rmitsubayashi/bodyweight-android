@@ -10,13 +10,16 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-
-tasks.create(name: "testCoverage", type: JacocoReport, dependsOn: "testDebugUnitTest") {
+tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
+        dependsOn: ["testDebugUnitTest"]) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports."
 
     reports {
-        html.enabled = true
+        html {
+            enabled true
+            destination file("$buildDir/jacoco/unit-test-reports/coverage")
+        }
     }
 
     def excludes = [
@@ -29,12 +32,28 @@ tasks.create(name: "testCoverage", type: JacocoReport, dependsOn: "testDebugUnit
             //might also need to exclude Kotlin-generated code
             // https://medium.com/@andrey.fomenkov/kotlin-jacoco-tuning-compiler-to-skip-generated-code-935fcaeaa391
     ]
-    def kotlinClasses = fileTree(dir: "$project.buildDir//tmp/kotlin-classes/debug", excludes: excludes)
-    classDirectories = files([kotlinClasses])
+    def compiledKotlinClasses = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: excludes)
+    classDirectories = files([compiledKotlinClasses])
 
     sourceDirectories = files([
             "$project.projectDir/src/main/kotlin"
     ])
 
     executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
+
+    // don't like how the testDebugUnitTest task creates 'jacoco', 'reports', 'test-results'
+    // folders in the same file hierarchy.
+    // so, we are moving all of them under the 'jacoco' folder and renaming them accordingly.
+    doLast {
+        ant.move(toDir: "$project.buildDir/jacoco/unit-test-reports/summary"){
+            fileset(dir: "$project.buildDir/reports/tests/testDebugUnitTest")
+        }
+        delete "$project.buildDir/reports"
+    }
+    doLast {
+        ant.move(toDir: "$project.buildDir/jacoco/unit-test-reports/individualResults"){
+            fileset(dir: "$project.buildDir/test-results/testDebugUnitTest")
+        }
+        delete "$project.buildDir/test-results"
+    }
 }
