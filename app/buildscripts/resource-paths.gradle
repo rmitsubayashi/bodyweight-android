@@ -1,0 +1,8 @@
+ext {
+    def ROOT_PATH = "src/main/res/"
+
+    resourcePaths = [
+            ROOT_PATH + "common",
+            ROOT_PATH + "userExercises"
+    ]
+}

@@ -10,6 +10,8 @@ apply from: 'dependencies/dependencies.gradle'
 
 apply from: 'buildscripts/jacoco.gradle'
 
+apply from: 'buildscripts/resource-paths.gradle'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -30,6 +32,8 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
+
+        main.res.srcDirs = resourcePaths
     }
 
     buildTypes {
