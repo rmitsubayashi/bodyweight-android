@@ -8,6 +8,8 @@ apply from: 'dependencies/general-dependencies.gradle'
 apply from: 'dependencies/test-dependencies.gradle'
 apply from: 'dependencies/dependencies.gradle'
 
+apply from: 'buildscripts/jacoco.gradle'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -18,10 +20,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            testCoverageEnabled true
         }
     }
 }
