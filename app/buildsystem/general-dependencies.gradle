@@ -1,0 +1,7 @@
+ext {
+    generalDeps = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION",
+            appCompat: 'androidx.appcompat:appcompat:1.0.2',
+            androidX: 'androidx.core:core-ktx:1.0.2'
+    ]
+}

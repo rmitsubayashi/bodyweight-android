@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply from: 'buildsystem/general-dependencies.gradle'
+apply from: 'buildsystem/test-dependencies.gradle'
+apply from: 'buildsystem/dependencies.gradle'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -24,10 +28,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation generalDeps.values()
+    implementation networkDeps.values()
+    implementation rxDeps.values()
+    testImplementation unitTestDeps.values()
+    androidTestImplementation androidTestDeps.values()
 }
