@@ -1,9 +1,8 @@
 ext {
-    def ROOT_PATH = "src/main/res/"
     resourcePaths = [
             "common",
             "userExercises"
     ].collect {
-        file -> ROOT_PATH + file
+        file -> "src/main/res/" + file
     }
 }
