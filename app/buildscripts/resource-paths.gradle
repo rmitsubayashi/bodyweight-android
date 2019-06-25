@@ -1,12 +1,9 @@
 ext {
-    def resourceFiles = [
+    def ROOT_PATH = "src/main/res/"
+    resourcePaths = [
             "common",
             "userExercises"
-    ]
-
-    resourcePaths = []
-    def ROOT_PATH = "src/main/res/"
-    resourceFiles.each {
-        file -> resourcePaths += ROOT_PATH + file
+    ].collect {
+        file -> ROOT_PATH + file
     }
 }
