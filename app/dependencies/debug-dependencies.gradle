@@ -1,0 +1,10 @@
+ext {
+    memoryDeps = [
+            leakCanary: 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
+    ]
+    def STETHO_VERSION = "1.5.1"
+    debuggerDeps = [
+        stetho: "com.facebook.stetho:stetho:$STETHO_VERSION",
+        stethoOkhttp: "com.facebook.stetho:stetho-okhttp3:$STETHO_VERSION"
+    ]
+}
