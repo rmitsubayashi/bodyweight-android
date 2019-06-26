@@ -12,15 +12,22 @@ tasks.withType(Test) {
 
 tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
         dependsOn: ["testDebugUnitTest"]) {
-    group = "reporting"
+    group = "verification"
     description = "Generate Jacoco coverage reports."
 
     def reportFolderPath = "$buildDir/jacoco/unit-test-reports"
     reports {
+        //for viewing
         html {
             enabled true
             destination file("${reportFolderPath}/coverage")
         }
+        //for parsing programmatically
+        xml {
+            enabled true
+            destination file("${reportFolderPath}/coverage/coverageReport.xml")
+        }
+
     }
 
     def excludes = [
@@ -45,6 +52,7 @@ tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
     // don't like how the testDebugUnitTest task creates 'jacoco', 'reports', 'test-results'
     // folders in the same file hierarchy.
     // so, we are moving all of them under the 'jacoco' folder and renaming them accordingly.
+    // (technically the 'reports', 'test-results' folders are not jacoco but default task generated)
     doLast {
         ant.move(toDir: "${reportFolderPath}/summary"){
             fileset(dir: "$project.buildDir/reports/tests/testDebugUnitTest")
@@ -57,4 +65,31 @@ tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
         }
         delete "$project.buildDir/test-results"
     }
+}
+
+// since we reorganized the outputs of the JacocoReport task,
+// instead of using the provided JacocoCoverageVerification task,
+// use a custom task so we can find the output files
+task verifyUnitTestCoverage(dependsOn: ['reportUnitTestCoverage'])  {
+    group = "verification"
+    def MINIMUM_COVERAGE = 0.6
+    doLast {
+        // dtd doctypes don't work well with XML parsers
+        ant.replace(file: "$buildDir/jacoco/unit-test-reports/coverage/coverageReport.xml",
+                token: '<!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd">', value: '')
+        def report = new XmlSlurper().parse("$buildDir/jacoco/unit-test-reports/coverage/coverageReport.xml")
+        def missedInstructions = report.counter[0]['@missed'].toDouble()
+        def coveredInstructions = report.counter[0]['@covered'].toDouble()
+        def totalInstructions = missedInstructions + coveredInstructions
+        if (totalInstructions == 0.0){
+            return
+        }
+        def instructionCoverage = coveredInstructions / totalInstructions
+        if (instructionCoverage < MINIMUM_COVERAGE){
+            throw new GradleException("Unit test coverage does not meet minimum requirements: Required: $MINIMUM_COVERAGE  Got: $instructionCoverage\n" +
+                    "Please check $buildDir/jacoco/unit-test-reports/coverage for details")
+        }
+
+    }
+
 }
