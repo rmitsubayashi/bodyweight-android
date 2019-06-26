@@ -1,9 +1,6 @@
-apply from: 'dependencies/common-dependency-versions.gradle'
-
 ext {
     unitTestDeps = [
-            junit: 'junit:junit:4.12',
-            okhttp: "com.squareup.okhttp3:mockwebserver:$COMMON_OKHTTP_VERSION"
+            junit: 'junit:junit:4.12'
     ]
 
     androidTestDeps = [

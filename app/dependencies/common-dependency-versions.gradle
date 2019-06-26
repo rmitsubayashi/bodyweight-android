@@ -1,3 +1,0 @@
-//for version control of libraries with both actual and testing dependencies
-// i.e. okhttp has the actual networking library but also a testing library that mocks servers
-ext.COMMON_OKHTTP_VERSION = "3.14.2"
