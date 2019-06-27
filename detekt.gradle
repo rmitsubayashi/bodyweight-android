@@ -1,0 +1,5 @@
+detekt {
+    toolVersion = "1.0.0-RC15"
+    input = files("$rootDir/app/src/main/kotlin")
+    filters = ".*/resources/.*,.*/build/.*"
+}
