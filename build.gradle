@@ -20,7 +20,7 @@ plugins {
 }
 
 allprojects {
-    apply from: "$rootDir/detekt.gradle"
+    apply from: "$rootDir/gradlescripts/detekt.gradle"
     apply from: "$rootDir/gradlescripts/jacoco.gradle"
     repositories {
         google()
