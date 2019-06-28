@@ -15,17 +15,17 @@ tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
     group = "verification"
     description = "Generate Jacoco coverage reports."
 
-    def reportFolderPath = "$buildDir/jacoco/unit-test-reports"
+    def reportFolderPath = "$buildDir/reports/coverage"
     reports {
         //for viewing
         html {
             enabled true
-            destination file("${reportFolderPath}/coverage")
+            destination file("${reportFolderPath}")
         }
         //for parsing programmatically
         xml {
             enabled true
-            destination file("${reportFolderPath}/coverage/coverageReport.xml")
+            destination file("${reportFolderPath}/coverageReport.xml")
         }
 
     }
@@ -49,20 +49,11 @@ tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,
 
     executionData = files("${project.buildDir}/jacoco/testDebugUnitTest.exec")
 
-    // don't like how the testDebugUnitTest task creates 'jacoco', 'reports', 'test-results'
-    // folders in the same file hierarchy.
-    // so, we are moving all of them under the 'jacoco' folder and renaming them accordingly.
-    // (technically the 'reports', 'test-results' folders are not jacoco but default task generated)
+    // unit test reports are suppressed, but the directories are still there
     doLast {
-        ant.move(toDir: "${reportFolderPath}/summary"){
-            fileset(dir: "$project.buildDir/reports/tests/testDebugUnitTest")
-        }
-        delete "$project.buildDir/reports"
+        delete "$project.buildDir/reports/tests"
     }
     doLast {
-        ant.move(toDir: "${reportFolderPath}/individualResults"){
-            fileset(dir: "$project.buildDir/test-results/testDebugUnitTest")
-        }
         delete "$project.buildDir/test-results"
     }
 }
@@ -75,9 +66,9 @@ task verifyUnitTestCoverage(dependsOn: ['reportUnitTestCoverage'])  {
     def MINIMUM_COVERAGE = 0.6
     doLast {
         // dtd doctypes don't work well with XML parsers
-        ant.replace(file: "$buildDir/jacoco/unit-test-reports/coverage/coverageReport.xml",
+        ant.replace(file: "$buildDir/reports/coverage/coverageReport.xml",
                 token: '<!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd">', value: '')
-        def report = new XmlSlurper().parse("$buildDir/jacoco/unit-test-reports/coverage/coverageReport.xml")
+        def report = new XmlSlurper().parse("$buildDir/reports/coverage/coverageReport.xml")
         def missedInstructions = report.counter[0]['@missed'].toDouble()
         def coveredInstructions = report.counter[0]['@covered'].toDouble()
         def totalInstructions = missedInstructions + coveredInstructions
