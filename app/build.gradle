@@ -54,6 +54,9 @@ android {
     }
 
 
+    dynamicFeatures = [":shop"]
+
+
 }
 
 dependencies {
