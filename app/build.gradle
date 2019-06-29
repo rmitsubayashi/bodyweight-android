@@ -54,7 +54,7 @@ android {
     }
 
 
-    dynamicFeatures = [":shop"]
+    dynamicFeatures = [":features:shop"]
 
 
 }
