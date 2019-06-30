@@ -5,5 +5,4 @@ dependencies {
     implementation uiDeps.get('constraintLayout')
     implementation navigationDeps.values()
     implementation project(":features:shop")
-    implementation project(":core:navigation")
 }

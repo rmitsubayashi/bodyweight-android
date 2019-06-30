@@ -1,5 +1,0 @@
-apply from: "$rootDir/gradlescripts/android-library-common.gradle"
-
-dependencies {
-    implementation navigationDeps.values()
-}

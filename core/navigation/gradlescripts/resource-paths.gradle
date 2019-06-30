@@ -1,7 +1,0 @@
-ext {
-    resourcePaths = [
-            "common"
-    ].collect {
-        file -> "src/main/res/" + file
-    }
-}

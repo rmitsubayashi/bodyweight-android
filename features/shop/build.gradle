@@ -1,7 +1,6 @@
 apply from: "$rootDir/gradlescripts/android-feature-common.gradle"
 
 dependencies {
-    implementation project(":core:navigation")
 
     implementation navigationDeps.values()
 }

@@ -1,1 +1,1 @@
-include ':app', ':features:shop', ':core:navigation'
+include ':app', ':features:shop'
