@@ -3,6 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/nav_graph_shop" app:startDestination="@id/fragment_shop">
 
-    <fragment android:id="@+id/fragment_shop" android:name="com.github.rmitsubayashi.bodyweight.shop.ShopFragment"
+    <fragment android:id="@+id/fragment_shop"
+              android:name="com.github.rmitsubayashi.bodyweight.shop.ShopFragment"
               android:label="ShopFragment"/>
 </navigation>

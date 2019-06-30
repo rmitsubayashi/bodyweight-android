@@ -1,0 +1,8 @@
+ext {
+    resourcePaths = [
+            "common",
+            "list"
+    ].collect {
+        file -> "src/main/res/" + file
+    }
+}
