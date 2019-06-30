@@ -1,8 +1,5 @@
 ext {
     resourcePaths = [
-            "common",
-            "userExercises"
-    ].collect {
-        file -> "src/main/res/" + file
-    }
+            "src/main/res/main"
+    ]
 }

@@ -1,7 +1,6 @@
 ext {
     resourcePaths = [
-            "common",
-            "shop"
+            "common"
     ].collect {
         file -> "src/main/res/" + file
     }

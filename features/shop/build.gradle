@@ -1,7 +1,7 @@
-apply plugin: 'com.android.dynamic-feature'
-
-apply from: "$rootDir/gradlescripts/android-common.gradle"
+apply from: "$rootDir/gradlescripts/android-feature-common.gradle"
 
 dependencies {
-    implementation project(':app')
+    implementation project(":core:navigation")
+
+    implementation navigationDeps.values()
 }
