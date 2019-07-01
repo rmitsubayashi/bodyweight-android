@@ -1,8 +1,0 @@
-ext {
-    resourcePaths = [
-            "common",
-            "shop"
-    ].collect {
-        file -> "src/main/res/" + file
-    }
-}

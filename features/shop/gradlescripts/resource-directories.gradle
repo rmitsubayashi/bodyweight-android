@@ -1,0 +1,4 @@
+ext.resourceDirectories = [
+        "common",
+        "shop"
+]
