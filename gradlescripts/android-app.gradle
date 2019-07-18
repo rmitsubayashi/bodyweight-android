@@ -7,20 +7,16 @@ apply from: "$rootDir/gradlescripts/dependencies/test-dependencies.gradle"
 apply from: "$rootDir/gradlescripts/dependencies/debug-dependencies.gradle"
 apply from: "$rootDir/gradlescripts/dependencies/dependencies.gradle"
 
-apply from: "$projectDir/gradlescripts/resource-paths.gradle"
+apply from: "$rootDir/gradlescripts/android-version-configs.gradle"
 
 android {
-    compileSdkVersion 28
     defaultConfig {
         applicationId "com.github.rmitsubayashi.bodyweight"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
+        //retrofit uses java 8
         targetCompatibility = "8"
         sourceCompatibility = "8"
     }
@@ -37,8 +33,6 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
-
-        main.res.srcDirs = resourcePaths
     }
 
     testOptions.unitTests.all {

@@ -1,5 +1,0 @@
-ext {
-    resourcePaths = [
-            "src/main/res/main"
-    ]
-}
