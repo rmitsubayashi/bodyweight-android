@@ -1,0 +1,10 @@
+ext {
+    unitTestDeps = [
+            junit: 'junit:junit:4.12'
+    ]
+
+    androidTestDeps = [
+            runner: 'androidx.test:runner:1.2.0',
+            espressso: 'androidx.test.espresso:espresso-core:3.2.0'
+    ]
+}

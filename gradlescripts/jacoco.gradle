@@ -8,6 +8,7 @@ jacoco {
 // needed for Robolectric
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 tasks.create(name: "reportUnitTestCoverage", type: JacocoReport,

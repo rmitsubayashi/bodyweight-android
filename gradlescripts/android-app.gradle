@@ -10,11 +10,11 @@ apply from: "$rootDir/gradlescripts/dependencies/dependencies.gradle"
 apply from: "$projectDir/gradlescripts/resource-paths.gradle"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.github.rmitsubayashi.bodyweight"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,8 +57,12 @@ dependencies {
     // TODO do we need this file tree??
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation generalDeps.values()
+    implementation diDeps.values()
+
     debugImplementation memoryDeps.values()
     debugImplementation debuggerDeps.values()
+
     testImplementation unitTestDeps.values()
+
     androidTestImplementation androidTestDeps.values()
 }

@@ -1,6 +1,6 @@
 ext {
     memoryDeps = [
-            leakCanary: 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
+            leakCanary: 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-3'
     ]
     def STETHO_VERSION = "1.5.1"
     debuggerDeps = [
