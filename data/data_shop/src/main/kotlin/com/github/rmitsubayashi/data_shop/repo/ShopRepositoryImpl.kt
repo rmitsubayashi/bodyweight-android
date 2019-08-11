@@ -61,5 +61,5 @@ internal class ShopRepositoryImpl: ShopRepository {
         return
     }
 
-    override suspend fun test(): Int = 2
+    override suspend fun test(): Int = 1
 }

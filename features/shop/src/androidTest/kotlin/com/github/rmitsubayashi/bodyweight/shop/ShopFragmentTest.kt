@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.mitsubayashi.bodyweight.shop.R
-import com.github.rmitsubayashi.bodyweight.di.shopModule
+import com.github.rmitsubayashi.bodyweight.di.shopModules
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +18,7 @@ class ShopFragmentTest {
     @Before
     fun before() {
         startKoin {
-            modules(shopModule)
+            modules(shopModules)
         }
     }
 
