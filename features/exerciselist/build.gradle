@@ -1,4 +1,4 @@
-apply from: "$rootDir/gradlescripts/android-feature-common.gradle"
+apply from: "$rootDir/gradlescripts/feature-common.gradle"
 
 dependencies {
 

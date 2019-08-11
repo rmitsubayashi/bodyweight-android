@@ -1,1 +1,1 @@
-include ':app', ':features:shop', ':features:exerciselist'
+include ':app', ':features:shop', ':features:exerciselist', ':data:data_shop'
