@@ -61,5 +61,8 @@ internal class ShopRepositoryImpl: ShopRepository {
         return
     }
 
-    override suspend fun test(): Int = 1
+    override suspend fun test(): Int {
+        Thread.sleep(1000)
+        return 1
+    }
 }
