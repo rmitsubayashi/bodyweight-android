@@ -15,12 +15,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    compileOptions {
-        //retrofit uses java 8
-        targetCompatibility = "8"
-        sourceCompatibility = "8"
-    }
-
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         // we use Robolectric for unit testing and Espresso for instrumentation testing
@@ -47,8 +41,6 @@ android {
 }
 
 dependencies {
-    // TODO do we need this file tree??
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation generalDeps.values()
     implementation diDeps.values()
     testImplementation unitTestDeps.values()
