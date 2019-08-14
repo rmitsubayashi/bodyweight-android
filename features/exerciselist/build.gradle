@@ -1,7 +1,0 @@
-apply from: "$rootDir/gradlescripts/feature-common.gradle"
-
-dependencies {
-    implementation project(":data:data_shop")
-    implementation architectureComponentDeps.values()
-    implementation navigationDeps.values()
-}

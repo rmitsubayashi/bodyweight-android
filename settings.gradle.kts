@@ -1,0 +1,1 @@
+include(":app", ":features:shop", ":features:exerciselist", ":data:data_shop")
