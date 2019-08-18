@@ -1,6 +1,6 @@
 package com.github.rmitsubayashi.data_shop.api
 
-import com.github.rmitsubayashi.data_shop.entity.ExerciseProduct
+import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 import retrofit2.http.GET
 import retrofit2.http.POST
 

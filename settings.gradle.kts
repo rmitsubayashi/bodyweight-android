@@ -1,1 +1,1 @@
-include(":app", ":features:shop", ":features:exerciselist", ":data:data_shop")
+include(":app", ":features:shop", ":features:exerciselist", ":data:shop_data_impl", ":data:shop_data", "features:shop_presenter")

@@ -1,7 +1,8 @@
 package com.github.rmitsubayashi.data_shop.repo
 
-import com.github.rmitsubayashi.data_shop.entity.Exercise
-import com.github.rmitsubayashi.data_shop.entity.ExerciseProduct
+import com.github.rmitsubayashi.shop_data.ShopRepository
+import com.github.rmitsubayashi.shop_data.entity.Exercise
+import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
 internal class ShopRepositoryImpl: ShopRepository {
     override suspend fun getExerciseProducts(): List<ExerciseProduct> {

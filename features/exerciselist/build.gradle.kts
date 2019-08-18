@@ -27,7 +27,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":data:data_shop"))
+    implementation(project(":data:shop_data_impl"))
+    implementation(project(":data:shop_data"))
     implementation(Deps.navigationUI)
     implementation(Deps.fragmentNavigation)
     implementation(Deps.liveData)

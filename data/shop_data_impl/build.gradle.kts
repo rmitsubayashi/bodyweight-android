@@ -22,9 +22,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:shop_data"))
     implementation(Deps.kotlin)
-    implementation(Deps.appCompat)
-    implementation(Deps.androidX)
     implementation(Deps.koin)
     implementation(Deps.moshi)
     implementation(Deps.retrofit)

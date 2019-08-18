@@ -1,4 +1,4 @@
-package com.github.rmitsubayashi.data_shop.entity
+package com.github.rmitsubayashi.shop_data.entity
 
 data class ExerciseProduct (
     val title: String,

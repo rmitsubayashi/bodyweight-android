@@ -1,6 +1,6 @@
-package com.github.rmitsubayashi.data_shop.repo
+package com.github.rmitsubayashi.shop_data
 
-import com.github.rmitsubayashi.data_shop.entity.ExerciseProduct
+import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
 interface ShopRepository {
     suspend fun getExerciseProducts(): List<ExerciseProduct>
