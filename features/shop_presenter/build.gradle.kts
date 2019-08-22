@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":data:shop_data"))
+    implementation(project(Modules.Data.shop))
     implementation(Deps.kotlin)
     implementation(Deps.koin)
     testImplementation(Deps.junit)

@@ -41,6 +41,6 @@ dependencies {
     implementation(Deps.fragmentNavigation)
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.androidTestRunner)
-    implementation(project(":features:shop"))
-    implementation(project(":features:exerciselist"))
+    implementation(project(Modules.Features.shop))
+    implementation(project(Modules.Features.exerciselist))
 }

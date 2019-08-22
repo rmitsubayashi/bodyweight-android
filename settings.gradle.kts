@@ -1,1 +1,7 @@
-include(":app", ":features:shop", ":features:exerciselist", ":data:shop_data_impl", ":data:shop_data", "features:shop_presenter")
+include(Modules.app,
+    Modules.Features.shop,
+    Modules.Features.exerciselist,
+    Modules.Data.shop,
+    Modules.Data.shopImpl,
+    Modules.Features.shopPresenter
+)
