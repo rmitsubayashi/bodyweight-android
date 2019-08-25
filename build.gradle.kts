@@ -6,16 +6,16 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41")
+        classpath("com.android.tools.build:gradle:3.5.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50")
         // helps keep gradle dependencies updated
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.21.0")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.22.0")
     }
 }
 
 plugins {
-    id("io.gitlab.arturbosch.detekt") version "1.0.0-RC16"
-    id("com.github.ben-manes.versions") version "0.21.0"
+    id("io.gitlab.arturbosch.detekt") version "1.0.1"
+    id("com.github.ben-manes.versions") version "0.22.0"
 }
 
 allprojects {
