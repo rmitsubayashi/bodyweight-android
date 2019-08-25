@@ -8,6 +8,6 @@ object Modules {
 
     object Data {
         const val shop = ":data:shop_data"
-        const val shopImpl = ":data:shop_data_impl"
+        const val shopImpl = ":data:shop_rest_sqlite_repo"
     }
 }

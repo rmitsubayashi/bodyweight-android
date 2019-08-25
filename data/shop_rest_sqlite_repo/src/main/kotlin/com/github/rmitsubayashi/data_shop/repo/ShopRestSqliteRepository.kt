@@ -4,7 +4,7 @@ import com.github.rmitsubayashi.shop_data.ShopRepository
 import com.github.rmitsubayashi.shop_data.entity.Exercise
 import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
-internal class ShopRepositoryImpl: ShopRepository {
+internal class ShopRestSqliteRepository: ShopRepository {
     override suspend fun getExerciseProducts(): List<ExerciseProduct> {
         return listOf(
             ExerciseProduct(
