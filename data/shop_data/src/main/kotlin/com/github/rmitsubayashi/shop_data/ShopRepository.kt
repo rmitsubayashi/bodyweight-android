@@ -4,6 +4,6 @@ import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
 interface ShopRepository {
     suspend fun getExerciseProducts(): List<ExerciseProduct>
-    suspend fun postExerciseProducts()
+    suspend fun postExerciseProducts(exerciseProducts: List<ExerciseProduct>)
     suspend fun test(): Int
 }

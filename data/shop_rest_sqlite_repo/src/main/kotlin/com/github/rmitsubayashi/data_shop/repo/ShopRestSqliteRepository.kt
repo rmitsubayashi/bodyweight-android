@@ -1,65 +1,30 @@
 package com.github.rmitsubayashi.data_shop.repo
 
+import com.github.rmitsubayashi.data_shop.local.*
 import com.github.rmitsubayashi.shop_data.ShopRepository
 import com.github.rmitsubayashi.shop_data.entity.Exercise
 import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
-internal class ShopRestSqliteRepository: ShopRepository {
+internal class ShopRestSqliteRepository(
+    private val exerciseProductDao: LocalExerciseProductDao, private val exerciseProductExerciseDao: LocalExerciseProductExerciseDao
+): ShopRepository {
     override suspend fun getExerciseProducts(): List<ExerciseProduct> {
-        return listOf(
-            ExerciseProduct(
-                "test1",
-                listOf(
-                    Exercise(1, "exercise 1", 1,1, 5)
-                ),
-                100,
-                false
-            ),
-            ExerciseProduct(
-                "test2",
-                listOf(
-                    Exercise(2, "exercise 2", 2,1, 5)
-                ),
-                100,
-                false
-            ),
-            ExerciseProduct(
-                "test3",
-                listOf(
-                    Exercise(3, "exercise 3", 3,2, 1)
-                ),
-                10,
-                false
-            ),
-            ExerciseProduct(
-                "test4",
-                listOf(
-                    Exercise(4, "exercise 4", 4,1, 10)
-                ),
-                200,
-                false
-            ),
-            ExerciseProduct(
-                "test5",
-                listOf(
-                    Exercise(5, "exercise 5", 5,1, 5)
-                ),
-                100,
-                false
-            ),
-            ExerciseProduct(
-                "test6",
-                listOf(
-                    Exercise(6, "exercise 6", 6,1, 5)
-                ),
-                100,
-                false
-            )
-        )
+        val localProducts = exerciseProductDao.getExerciseProducts()
+        return localProducts.map {
+            val localProductExercises = exerciseProductExerciseDao.getExerciseProductExercises(it.categoryID)
+            convertFromLocalExerciseProduct(it, localProductExercises)
+        }
     }
 
-    override suspend fun postExerciseProducts() {
-        return
+    override suspend fun postExerciseProducts(exerciseProducts: List<ExerciseProduct>) {
+        exerciseProductDao.clear()
+        val localExerciseProducts = exerciseProducts.map { convertToLocalExerciseProduct(it) }
+        exerciseProductDao.insertExerciseProducts(localExerciseProducts)
+        val localExerciseProductExercisesList: List<List<LocalExerciseProductExercise>> =
+            exerciseProducts.map { convertToLocalExerciseProductExercises(it) }
+        val localExerciseProductExercises: List<LocalExerciseProductExercise> =
+            localExerciseProductExercisesList.flatten()
+        exerciseProductExerciseDao.insertExerciseProductExercises(localExerciseProductExercises)
     }
 
     override suspend fun test(): Int {

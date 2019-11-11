@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -27,4 +28,7 @@ dependencies {
     implementation(Deps.koin)
     implementation(Deps.moshi)
     implementation(Deps.retrofit)
+    implementation(Deps.room)
+    implementation(Deps.roomCoroutinesAndKtx)
+    kapt(Deps.roomAnnotations)
 }

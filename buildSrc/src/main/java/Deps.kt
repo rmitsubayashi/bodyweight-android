@@ -1,6 +1,9 @@
 object Deps {
     const val retrofit = "com.squareup.retrofit2:retrofit:2.6.1"
     const val moshi = "com.squareup.moshi:moshi:1.8.0"
+    const val room = "androidx.room:room-runtime:2.2.1"
+    const val roomAnnotations = "androidx.room:room-compiler:2.2.1"
+    const val roomCoroutinesAndKtx = "androidx.room:room-ktx:2.2.1"
 
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
     const val appCompat = "androidx.appcompat:appcompat:1.1.0-rc01"
