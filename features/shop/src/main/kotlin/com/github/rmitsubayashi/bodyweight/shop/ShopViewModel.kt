@@ -9,11 +9,15 @@ import com.github.rmitsubayashi.shop_data.ShopRepository
 import com.github.rmitsubayashi.shop_data.entity.Exercise
 import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
-internal class ShopViewModel(private val shopRepo: ShopRepository, private val shopPresenter: ShopPresenter): ViewModel() {
+internal class ShopViewModel(
+    private val shopRepo: ShopRepository,
+    private val shopPresenter: ShopPresenter
+): ViewModel() {
     fun loadShop(): LiveData<ShopViewState> = liveData {
         shopRepo.postExerciseProducts(mockExerciseProducts)
         val exerciseProducts = shopRepo.getExerciseProducts()
         emit(shopPresenter.getShopViewState(exerciseProducts))
+        shopRepo.scheduleDailyFetchExerciseProducts()
     }
 
     private val mockExerciseProducts =

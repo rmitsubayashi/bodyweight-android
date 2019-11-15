@@ -1,12 +1,15 @@
 package com.github.rmitsubayashi.data_shop.repo
 
 import com.github.rmitsubayashi.data_shop.local.*
+import com.github.rmitsubayashi.shop_data.DailyShopRequestScheduler
 import com.github.rmitsubayashi.shop_data.ShopRepository
 import com.github.rmitsubayashi.shop_data.entity.Exercise
 import com.github.rmitsubayashi.shop_data.entity.ExerciseProduct
 
 internal class ShopRestSqliteRepository(
-    private val exerciseProductDao: LocalExerciseProductDao, private val exerciseProductExerciseDao: LocalExerciseProductExerciseDao
+    private val exerciseProductDao: LocalExerciseProductDao,
+    private val exerciseProductExerciseDao: LocalExerciseProductExerciseDao,
+    private val dailyShopRequestScheduler: DailyShopRequestScheduler
 ): ShopRepository {
     override suspend fun getExerciseProducts(): List<ExerciseProduct> {
         val localProducts = exerciseProductDao.getExerciseProducts()
@@ -27,8 +30,12 @@ internal class ShopRestSqliteRepository(
         exerciseProductExerciseDao.insertExerciseProductExercises(localExerciseProductExercises)
     }
 
+    override fun scheduleDailyFetchExerciseProducts() {
+        dailyShopRequestScheduler.schedule()
+    }
+
     override suspend fun test(): Int {
-        Thread.sleep(1000)
+        exerciseProductDao.clear()
         return 1
     }
 }

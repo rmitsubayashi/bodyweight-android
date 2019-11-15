@@ -5,6 +5,8 @@ object Deps {
     const val roomAnnotations = "androidx.room:room-compiler:2.2.1"
     const val roomCoroutinesAndKtx = "androidx.room:room-ktx:2.2.1"
 
+    const val workManager = "androidx.work:work-runtime-ktx:2.2.0"
+
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
     const val appCompat = "androidx.appcompat:appcompat:1.1.0-rc01"
     const val androidX = "androidx.core:core-ktx:1.2.0-alpha03"
